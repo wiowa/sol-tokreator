@@ -1,5 +1,5 @@
-import SideNav from '@/app/ui/dashboard/sidenav';
-import { i18n, type Locale } from '../../lib/i18n/i18n-config';
+import SideNav from '@/components/ui/dashboard/sidenav';
+import { i18n, type Locale } from '@/lib/i18n/i18n-config';
 
 export default function Layout({
   children,

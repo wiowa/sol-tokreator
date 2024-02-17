@@ -1,16 +1,16 @@
-import CardWrapper from '@/app/ui/dashboard/cards';
-import RevenueChart from '@/app/ui/dashboard/revenue-chart';
-import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
-import { lusitana } from '@/app/ui/fonts';
+import CardWrapper from '@/components/ui/dashboard/cards';
+import RevenueChart from '@/components/ui/dashboard/revenue-chart';
+import LatestInvoices from '@/components/ui/dashboard/latest-invoices';
+import { lusitana } from '@/components/ui/fonts';
 import { Suspense } from 'react';
-import { i18n, type Locale } from '@/app/lib/i18n/i18n-config';
-import { getDictionary } from '@/app/lib/i18n/get-dictionary';
+import { i18n, type Locale } from '@/lib/i18n/i18n-config';
+import { getDictionary } from '@/lib/i18n/get-dictionary';
 
 import {
   RevenueChartSkeleton,
   LatestInvoicesSkeleton,
   CardsSkeleton,
-} from '@/app/ui/skeletons';
+} from '@/components/ui/skeletons';
 
 export default async function Page({
   params: { lang },

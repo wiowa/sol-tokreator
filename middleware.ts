@@ -3,7 +3,7 @@ import { authConfig } from './auth.config';
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import { i18n } from './app/lib/i18n/i18n-config';
+import { i18n } from './lib/i18n/i18n-config';
 
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
