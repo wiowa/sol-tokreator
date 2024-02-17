@@ -5,5 +5,8 @@
   "counter": {
     "increment": "Přidat",
     "decrement": "Ubrat"
+  },
+  "dashboard": {
+    "title": "Přístrojová deska"
   }
 }

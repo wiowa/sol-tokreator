@@ -1,0 +1,12 @@
+{
+  "server-component": {
+    "welcome": "Bienvenue"
+  },
+  "counter": {
+    "increment": "Incrementer",
+    "decrement": "Decrementer"
+  },
+  "dashboard": {
+    "title": "Tableau de bord"
+  }
+}

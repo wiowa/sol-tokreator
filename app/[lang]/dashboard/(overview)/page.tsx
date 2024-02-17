@@ -3,17 +3,27 @@ import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
+import { i18n, type Locale } from '@/app/lib/i18n/i18n-config';
+import { getDictionary } from '@/app/lib/i18n/get-dictionary';
+
 import {
   RevenueChartSkeleton,
   LatestInvoicesSkeleton,
   CardsSkeleton,
 } from '@/app/ui/skeletons';
 
-export default async function Page() {
+export default async function Page({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  console.log('lang', lang);
+  const dictionary = await getDictionary(lang);
+  console.log('dictionary', dictionary);
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-        Dashboard
+        {dictionary?.dashboard?.title}
       </h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Suspense fallback={<CardsSkeleton />}>
