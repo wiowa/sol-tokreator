@@ -8,5 +8,8 @@
   },
   "dashboard": {
     "title": "Tableau de bord"
+  },
+  "customers": {
+    "title": "Liste des clients"
   }
 }

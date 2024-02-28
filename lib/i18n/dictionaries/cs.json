@@ -8,5 +8,8 @@
   },
   "dashboard": {
     "title": "Přístrojová deska"
+  },
+  "customers": {
+    "title": "Seznam zákazníků"
   }
 }

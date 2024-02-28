@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { HomeIcon, FileIcon, PersonIcon } from '@radix-ui/react-icons';
+import { Button } from '../button';
+import { Locale } from '@/lib/i18n/i18n-config';
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -17,27 +19,34 @@ const links = [
   { name: 'Customers', href: '/dashboard/customers', icon: PersonIcon },
 ];
 
-export default function NavLinks() {
+export default function NavLinks({ lang }: { lang: Locale }) {
   const pathname = usePathname();
 
   return (
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
+        console.log('lang', lang, link.href, pathname);
         return (
-          <Link
+          <Button
             key={link.name}
-            href={link.href}
+            asChild
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex h-[48px] grow items-center justify-center gap-2 bg-gray-500 p-3 text-sm font-medium hover:bg-gray-50 hover:text-gray-400 md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-sky-100 text-blue-600': pathname === link.href,
+                'bg-gray-100 text-gray-800':
+                  pathname === `/${lang}${link.href}`,
               },
             )}
           >
-            <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
+            <Link
+              href={`/${lang}${link.href}`}
+              className="flex w-full justify-center"
+            >
+              <LinkIcon className="w-6" />
+              <p className="hidden md:block">{link.name}</p>
+            </Link>
+          </Button>
         );
       })}
     </>

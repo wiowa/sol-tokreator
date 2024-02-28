@@ -8,5 +8,8 @@
   },
   "dashboard": {
     "title": "Armaturenbrett"
+  },
+  "customers": {
+    "title": "Kundenliste"
   }
 }

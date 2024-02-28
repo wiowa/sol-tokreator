@@ -8,5 +8,8 @@
   },
   "dashboard": {
     "title": "Dashboard"
+  },
+  "customers": {
+    "title": "Customers List"
   }
 }
