@@ -5,7 +5,11 @@ import { getDictionary } from '@/lib/i18n/get-dictionary';
 import Search from '@/components/ui/search';
 import { InvoicesTableSkeleton } from '@/components/ui/skeletons';
 import Table from '@/components/ui/customers/table';
-import Pagination from '@/components/ui/invoices/pagination';
+import Pagination from '@/components/ui/paginationWrapper';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { PlusIcon } from '@radix-ui/react-icons';
+import { AddCustomer } from '@/components/ui/customers/buttons';
 
 import { fetchCustomersPages } from '@/lib/data';
 
@@ -36,6 +40,7 @@ export default async function Page({
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search customers..." />
+        <AddCustomer href={`/${lang}/dashboard/customers/add`} />
       </div>
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />

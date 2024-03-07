@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { deleteInvoice } from '@/lib/actions';
+import { deleteInvoice } from '@/lib/actions/invoices';
 import { Button } from '../button';
 import { Pencil2Icon, TrashIcon, PlusIcon } from '@radix-ui/react-icons';
 
 export function CreateInvoice() {
   return (
-    <Button asChild>
+    <Button asChild variant="outline">
       <Link href="/dashboard/invoices/create">
         <PlusIcon className="md:mr-2" />
         <span className="hidden md:block">Create Invoice</span>{' '}
@@ -16,7 +16,7 @@ export function CreateInvoice() {
 
 export function UpdateInvoice({ id }: { id: string }) {
   return (
-    <Button asChild>
+    <Button asChild variant="outline">
       <Link href={`/dashboard/invoices/${id}/edit`}>
         <Pencil2Icon />
       </Link>
@@ -28,9 +28,9 @@ export function DeleteInvoice({ id }: { id: string }) {
   const deleteInvoiceWithId = deleteInvoice.bind(null, id);
   return (
     <form action={deleteInvoiceWithId}>
-      <Button>
+      <Button variant="outline" className="bg-red-600 hover:bg-red-500">
         <span className="sr-only">Delete</span>
-        <TrashIcon />
+        <TrashIcon className="text-white" />
       </Button>
     </form>
   );
