@@ -1,7 +1,8 @@
 import '@/style/global.css';
-import { inter } from '@/components/ui/fonts';
+import { inter, oxygen } from '@/components/ui/fonts';
 import { Metadata } from 'next';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/context/theme-provider';
+import { PhantomProvider } from '@/context/phantom-provider';
 
 export const metadata: Metadata = {
   title: {
@@ -19,14 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${oxygen.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <PhantomProvider>{children}</PhantomProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -30,7 +30,6 @@ export type State = {
 
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
-
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(prevState: State, formData: FormData) {

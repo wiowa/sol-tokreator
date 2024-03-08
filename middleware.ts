@@ -7,6 +7,7 @@ import { i18n } from './lib/i18n/i18n-config';
 
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { get } from '@/lib/session-store';
 
 function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {};
@@ -24,9 +25,14 @@ function getLocale(request: NextRequest): string | undefined {
   return locale;
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-
+  const origin = request.nextUrl.origin
+  const locale = getLocale(request);
+  console.log('pathname', request.nextUrl)
+  const connectedWallet = await get('pubKey')
+  console.log('connectedWallet', connectedWallet)
+  if (!connectedWallet && pathname.includes('dashboard')) return NextResponse.redirect(new URL(`${origin}/${locale}/login`))
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one
   // if (
@@ -46,7 +52,6 @@ export function middleware(request: NextRequest) {
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
@@ -59,7 +64,6 @@ export function middleware(request: NextRequest) {
   }
 }
 
-export default NextAuth(authConfig).auth;
 
 export const config = {
   // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
