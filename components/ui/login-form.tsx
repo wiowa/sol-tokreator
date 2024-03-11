@@ -15,6 +15,12 @@ import { useRouter } from 'next/navigation';
 import { i18n, type Locale } from '@/lib/i18n/i18n-config';
 // import { get, set } from '@/lib/session-store';
 
+declare global {
+  interface Window {
+    phantom: { solana: any };
+  }
+}
+
 export default function LoginForm({
   lang,
   handleLogin,
