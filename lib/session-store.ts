@@ -26,7 +26,7 @@ export function getSessionIdAndCreateIfMissing() {
   return sessionId;
 }
 
-export function get(key: string, namespace: string = "") {
+export function get(key: string, namespace: string = ""): Promise<string | number | null> | null {
   const sessionId = getSessionId();
   if (!sessionId) {
     return null;

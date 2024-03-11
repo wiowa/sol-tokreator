@@ -7,7 +7,7 @@ const ITEMS_PER_PAGE = 20;
 export async function fetchFilteredTokens(
   query: string,
   currentPage: number,
-  pubKey: string,
+  pubKey: string | number | null,
 ) {
   noStore();
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
