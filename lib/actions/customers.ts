@@ -29,7 +29,7 @@ export async function addCustomer(prevState: State, formData: FormData) {
     email: formData.get('email'),
   });
 
-  if (validatedFields.success) {
+  if (!validatedFields.success) {
     return {
       errors: validatedFields?.error?.flatten().fieldErrors,
       message: 'Missing Fields. Failed to Create Invoice.',
