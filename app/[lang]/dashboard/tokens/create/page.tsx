@@ -11,7 +11,7 @@ export default async function Page({
 }) {
   const wallet = await get('pubKey');
   return (
-    <main>
+    <main className="px-8">
       <div className="sticky top-0 z-10 bg-white pb-3 pt-6 dark:bg-stone-950 md:pb-3 md:pt-12">
         <Breadcrumbs
           breadcrumbs={[
