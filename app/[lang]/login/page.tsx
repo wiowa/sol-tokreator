@@ -12,6 +12,7 @@ export default async function LoginPage({
   const handleLogin = async (pubKey: string) => {
     'use server';
     await set('pubKey', pubKey);
+    redirect(`/${lang}/dashboard/tokens`);
   };
   const pubKey = await get('pubKey');
   if (pubKey) redirect(`/${lang}/dashboard/tokens`);
@@ -23,7 +24,7 @@ export default async function LoginPage({
             <AcmeLogo />
           </div>
         </div>
-        <LoginForm lang={lang} handleLogin={handleLogin} />
+        <LoginForm handleLogin={handleLogin} />
       </div>
     </main>
   );

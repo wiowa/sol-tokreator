@@ -22,10 +22,8 @@ declare global {
 }
 
 export default function LoginForm({
-  lang,
   handleLogin,
 }: {
-  lang: Locale;
   handleLogin: (pubKey: string) => void;
 }) {
   const { setWallet, setProvider, wallet } = usePhantomContext();
@@ -42,10 +40,6 @@ export default function LoginForm({
     window.open('https://phantom.app/', '_blank');
   };
 
-  React.useEffect(() => {
-    if (wallet) router.push(`/${lang}/dashboard/tokens`);
-  }, []);
-
   const onLogin = async (getProvider: () => any) => {
     const provider = getProvider();
     console.log('provider', provider);
@@ -55,8 +49,7 @@ export default function LoginForm({
       console.log(resp.publicKey.toString());
       const pubKey = resp.publicKey.toString();
       setWallet(pubKey);
-      handleLogin(pubKey);
-      router.push(`/${lang}/dashboard/tokens`);
+      return handleLogin(pubKey);
     } catch (err) {
       console.log('error while connect', err);
     }
