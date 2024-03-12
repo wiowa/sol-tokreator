@@ -2,14 +2,17 @@ import Link from 'next/link';
 import NavLinks from '@/components/ui/dashboard/nav-links';
 import AcmeLogo from '@/components/ui/acme-logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
-import { signOut } from '@/auth';
 import LocaleSwitcher from '@/components/ui/locale-switcher';
 import { ModeToggle } from '../dark-mode-switcher';
 import { i18n, type Locale } from '@/lib/i18n/i18n-config';
 import { set } from '@/lib/session-store';
 import { redirect } from 'next/navigation';
+import { get } from '@/lib/session-store';
 
-export default function SideNav({ lang }: { lang: Locale }) {
+export default async function SideNav({ lang }: { lang: Locale }) {
+  const pubKey = await get('pubKey');
+  const formattedPubKeyStart = pubKey?.toString().slice(0, 5);
+  const formattedPubKeyFinish = pubKey?.toString().slice(40);
   return (
     <div className="flex h-full flex-col border-r-2 border-green-500 py-4">
       <Link
@@ -23,6 +26,9 @@ export default function SideNav({ lang }: { lang: Locale }) {
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks lang={lang} />
         <div className="hidden h-auto w-full grow rounded-md md:block"></div>
+        <div className="text-sm">
+          Connected with: {formattedPubKeyStart}...{formattedPubKeyFinish}
+        </div>
         <LocaleSwitcher />
         <ModeToggle />
         <form
